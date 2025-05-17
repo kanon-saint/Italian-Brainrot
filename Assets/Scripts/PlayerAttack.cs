@@ -68,12 +68,12 @@ public class PlayerAttack : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
 
         attackArea.transform.position = spawnPosition;
-        attackArea.transform.rotation = rotation;
+        // attackArea.transform.rotation = rotation;
         attackArea.SetActive(true);
 
         if (slashEffectPrefab != null)
         {
-            GameObject slash = Instantiate(slashEffectPrefab, spawnPosition, rotation);
+            GameObject slash = Instantiate(slashEffectPrefab, spawnPosition, Quaternion.identity);
             Destroy(slash, 1f);
         }
     }
