@@ -9,6 +9,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        HandleMovement();
+        HandleLookAtCursor();
+    }
+
+
+    private void Flip()
+    {
+        facingLeft = !facingLeft;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+
+    private void HandleMovement()
+    {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
@@ -17,23 +33,20 @@ public class PlayerController : MonoBehaviour
 
         bool isMoving = moveX != 0f || moveZ != 0f;
         animator.SetFloat("Speed", isMoving ? 1f : 0f);
-
-        // Flip sprite using Y-axis rotation
-        if (moveX > 0f && facingLeft)
-        {
-            Flip();
-        }
-        else if (moveX < 0f && !facingLeft)
-        {
-            Flip();
-        }
     }
-
-    private void Flip()
+    private void HandleLookAtCursor()
     {
-        facingLeft = !facingLeft;
-        Vector3 rotation = transform.eulerAngles;
-        rotation.y += 180f;
-        transform.eulerAngles = rotation;
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mouseWorldPosition - transform.position;
+
+        if (direction.x > 0 && facingLeft)
+        {
+            Flip();
+        }
+        else if (direction.x < 0 && !facingLeft)
+        {
+            Flip();
+        }
     }
+
 }
