@@ -21,11 +21,5 @@ public class PlayerAttibutes : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        // StartCoroutine(FlashRed());
     }
-
-    // private IEnumerator FlashRed()
-    // {
-    //     // Flash red if hit
-    // }
 }
