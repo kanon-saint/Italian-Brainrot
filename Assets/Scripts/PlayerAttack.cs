@@ -3,14 +3,14 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject slashEffectPrefab;
-    [SerializeField] private float attackDistance = 1.5f; // Distance from player to spawn slash
+    [SerializeField] private float attackDistance;
 
     private GameObject attackArea = default;
 
     private bool attacking = false;
 
     private float timeToAttack = 0.25f;
-    private float attackCooldown = 2f;
+    private float attackCooldown = 1f;
     private float attackTimer = 0f;
     private float attackDurationTimer = 0f;
 
@@ -68,12 +68,12 @@ public class PlayerAttack : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
 
         attackArea.transform.position = spawnPosition;
-        // attackArea.transform.rotation = rotation;
+        attackArea.transform.rotation = rotation;
         attackArea.SetActive(true);
 
         if (slashEffectPrefab != null)
         {
-            GameObject slash = Instantiate(slashEffectPrefab, spawnPosition, Quaternion.identity);
+            GameObject slash = Instantiate(slashEffectPrefab, spawnPosition, rotation);
             Destroy(slash, 1f);
         }
     }
