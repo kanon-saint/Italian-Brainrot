@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AttackTrigger : MonoBehaviour
 {
+    [SerializeField] public int attackDamage = 3;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Mob"))
@@ -9,7 +11,7 @@ public class AttackTrigger : MonoBehaviour
             PlayerAttibutes enemyAttributes = other.GetComponent<PlayerAttibutes>();
             if (enemyAttributes != null)
             {
-                enemyAttributes.health -= 2;
+                enemyAttributes.health -= attackDamage;
                 Debug.Log("Enemy hit! Remaining HP: " + enemyAttributes.health);
             }
         }
