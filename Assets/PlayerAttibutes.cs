@@ -1,15 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttibutes : MonoBehaviour
 {
     [SerializeField] public int health = 10;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0)
@@ -17,4 +17,15 @@ public class PlayerAttibutes : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        // StartCoroutine(FlashRed());
+    }
+
+    // private IEnumerator FlashRed()
+    // {
+    //     // Flash red if hit
+    // }
 }

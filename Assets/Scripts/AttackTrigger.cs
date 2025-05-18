@@ -11,9 +11,10 @@ public class AttackTrigger : MonoBehaviour
             PlayerAttibutes enemyAttributes = other.GetComponent<PlayerAttibutes>();
             if (enemyAttributes != null)
             {
-                enemyAttributes.health -= attackDamage;
+                enemyAttributes.TakeDamage(attackDamage);
                 Debug.Log("Enemy hit! Remaining HP: " + enemyAttributes.health);
             }
         }
     }
+
 }
